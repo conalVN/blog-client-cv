@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { path } from "./utils/path";
+import { About, DetailPost, Home, Layout, Posts } from "./pages/public";
+import { Dashboard, EditPost } from "./pages/admin";
+import Manager from "./pages/admin/Manager";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path={path.LAYOUT} element={<Layout />}>
+          <Route index path={path.HOME} element={<Home />} />
+          <Route path={path.POSTS} element={<Posts />} />
+          <Route path={path.DETAIL_POST} element={<DetailPost />} />
+          <Route path={path.ABOUT} element={<About />} />
+        </Route>
+        <Route path={path.SYSTEM} element={<Dashboard />}>
+          <Route path={path.MANAGER} element={<Manager />} />
+          <Route path={path.CREATE_POST} element={<EditPost />} />
+          <Route path={path.UPDATE_POST} element={<EditPost isUpdate />} />
+        </Route>
+      </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+    </>
   );
 }
 
