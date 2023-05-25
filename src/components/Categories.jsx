@@ -1,7 +1,8 @@
 import { memo } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-function Categories({ paginate }) {
+function Categories({ setCurPage }) {
   const { tags } = useSelector((state) => state.post);
   return (
     <div className="">
@@ -11,9 +12,9 @@ function Categories({ paginate }) {
       <ul className="flex flex-wrap gap-2">
         <li
           className="bg-orange-400 text-white px-2 cursor-pointer"
-          onClick={() => paginate(1)}
+          onClick={() => setCurPage(1)}
         >
-          #all
+          <Link to={`/posts`}>#all</Link>
         </li>
         {tags?.length > 0 &&
           tags?.map((tag, i) => {
@@ -22,9 +23,9 @@ function Categories({ paginate }) {
                 <li
                   className="bg-orange-400 text-white px-2 cursor-pointer"
                   key={tag}
-                  onClick={() => paginate(1)}
+                  onClick={() => setCurPage(1)}
                 >
-                  #{tag}
+                  <Link to={`/posts?category=${tag}`}>#{tag}</Link>
                 </li>
               )
             );

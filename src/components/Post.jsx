@@ -1,12 +1,19 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import moment from "moment";
+import * as actions from "../store/actions";
 
 function Post({ data }) {
+  const dispatch = useDispatch();
+
   return (
     <div className="col c-12 m-4 mx-0">
       <div className="rounded-lg overflow-hidden">
-        <Link to={`/posts/${data?._id}`}>
+        <Link
+          to={`/posts/${data?._id}`}
+          onClick={() => dispatch(actions.setCurPostId(data?._id))}
+        >
           <img
             src={data?.thumbnail?.url}
             alt={data?.title}
@@ -16,7 +23,12 @@ function Post({ data }) {
       </div>
       <div className="flex flex-col gap-1">
         <h3 className="font-semibold line-clamp-1 cursor-pointer">
-          <Link to={`/posts/${data?._id}`}>{data?.title}</Link>
+          <Link
+            to={`/posts/${data?._id}`}
+            onClick={() => dispatch(actions.setCurPostId(data?._id))}
+          >
+            {data?.title}
+          </Link>
         </h3>
         <p className="line-clamp-2">{data?.description}</p>
         <span className="text-gray-400">

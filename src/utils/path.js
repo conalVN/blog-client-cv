@@ -2,9 +2,10 @@ export const path = {
   LAYOUT: "",
   HOME: "",
   POSTS: "posts",
+  LIST_POST: "",
+  DETAIL_POST: ":id",
   DOWNLOAD: "download",
   ABOUT: "about",
-  DETAIL_POST: "posts/:param",
   // services
   SERVICES: "services",
   COMMUNICATIONS: "services/communications",

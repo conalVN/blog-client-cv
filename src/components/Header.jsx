@@ -7,7 +7,7 @@ const noStyle = "";
 
 function Header() {
   return (
-    <div className="fixed top-2 z-50 flex items-center justify-between w-full max-w-7xl py-2 px-4 bg-alpha rounded-full border border-orange-400">
+    <div className="fixed top-2 z-50 hidden md:flex items-center justify-between w-full max-w-7xl py-2 px-4 bg-alpha rounded-full border border-orange-400">
       <Link to="/" className="font-logo text-xl">
         Conal_
       </Link>

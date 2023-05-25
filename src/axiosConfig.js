@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://blog-apis-v1.vercel.app",
   headers: { "X-Custom-Header": "foobar", "Content-Type": "application/json" },
 });
 

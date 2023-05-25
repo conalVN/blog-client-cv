@@ -22,7 +22,7 @@ function About() {
           <span>Perfect</span>
           <button className="flex items-center gap-2 uppercase text-2xl my-4 py-2 px-8 text-white bg-orange-400 w-max rounded-full">
             Call me
-            <span class="material-symbols-outlined">call</span>
+            <span className="material-symbols-outlined">call</span>
           </button>
         </p>
       </div>

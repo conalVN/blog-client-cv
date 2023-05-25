@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 import axiosConfig from "../../axiosConfig";
 import * as actions from "../../store/actions";
 import { LoadingPage, Header } from "../../components";
+import MenuMobile from "../../components/MenuMobile";
 
 function Layout() {
   const { isLoading } = useSelector((state) => state.app);
@@ -27,8 +28,9 @@ function Layout() {
       {isLoading ? (
         <LoadingPage />
       ) : (
-        <div className="w-full h-full max-w-7xl mx-auto">
+        <div className="w-full h-full max-w-7xl mx-auto overflow-x-hidden">
           <Header />
+          <MenuMobile />
           <div className="h-full">
             <Outlet />
           </div>

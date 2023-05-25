@@ -2,6 +2,7 @@ import actionTypes from "../actions/actionTypes";
 
 const initState = {
   posts: null,
+  related: null,
   tags: null,
   curPostId: null,
 };
@@ -12,6 +13,11 @@ const postReducer = (state = initState, action) => {
       return {
         ...state,
         posts: action.posts || null,
+      };
+    case actionTypes.RELATED_POST:
+      return {
+        ...state,
+        related: action.related || null,
       };
     case actionTypes.TAGS:
       return {

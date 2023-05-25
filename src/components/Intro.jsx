@@ -5,10 +5,10 @@ import book from "../source/images/book.svg";
 
 function Intro() {
   return (
-    <section className="relative w-full h-screen">
+    <section className="relative w-full h-screen hidden md:block">
       <span className="absolute left-[10%] top-[20%] w-60 h-40 bg-topLeft bg-center bg-no-repeat"></span>
       <span className="absolute left-[10%] bottom-[10%] w-60 h-40 bg-botLeft bg-center bg-no-repeat"></span>
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 z-10 font-banner text-6xl text-center">
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 z-10 font-banner text-4xl md:text-6xl text-center">
         <span className="relative">
           <span className="absolute left-[-40%] top-[-10%] -rotate-12 w-8 h-8 rounded-full text-9xl text-orange-300">
             +
