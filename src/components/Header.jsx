@@ -18,6 +18,7 @@ function Header() {
               <NavLink
                 to={item.path}
                 className={({ isActive }) => (isActive ? style : noStyle)}
+                onClick={() => window.scrollTo(0, 0)}
               >
                 {item.name}
               </NavLink>

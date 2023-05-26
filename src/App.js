@@ -3,7 +3,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { path } from "./utils/path";
-import { About, DetailPost, Home, Layout, Posts } from "./pages/public";
+import {
+  About,
+  DetailPost,
+  Home,
+  Layout,
+  PageNotFound,
+  Posts,
+} from "./pages/public";
 import { Dashboard, EditPost } from "./pages/admin";
 import Manager from "./pages/admin/Manager";
 import { useState } from "react";
@@ -11,6 +18,7 @@ import { List } from "./components";
 
 function App() {
   const [curPage, setCurPage] = useState(1);
+
   return (
     <>
       <Routes>
@@ -27,6 +35,7 @@ function App() {
             <Route path={path.DETAIL_POST} element={<DetailPost />} />
           </Route>
           <Route path={path.ABOUT} element={<About />} />
+          <Route path={path.STAR} element={<PageNotFound />} />
         </Route>
         <Route path={path.SYSTEM} element={<Dashboard />}>
           <Route path={path.MANAGER} element={<Manager />} />

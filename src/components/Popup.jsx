@@ -10,7 +10,6 @@ function Popup({ title, isDelete }) {
   const dispatch = useDispatch();
 
   const handleDeletePost = () => {
-    dispatch(actions.loading(true));
     // call api delete
     axiosConfig
       .delete(`/api/system/${curPostId}`)
@@ -27,7 +26,6 @@ function Popup({ title, isDelete }) {
         toast.error("An error occurred while deleting the post");
         console.log(err);
       });
-    dispatch(actions.loading(false));
   };
 
   return (

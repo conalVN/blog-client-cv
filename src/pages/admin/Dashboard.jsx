@@ -7,7 +7,7 @@ function Dashboard() {
   const { isPopup } = useSelector((state) => state.app);
   return (
     <div className="grid h-screen overflow-hidden">
-      <div className="row h-full">
+      <div className="row h-full overflow-y-auto">
         <div className="col l-2">
           <SidebarLeft />
         </div>

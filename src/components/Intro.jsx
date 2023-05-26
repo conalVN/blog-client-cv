@@ -1,48 +1,75 @@
-import { memo } from "react";
-
-import earth from "../source/images/earth.svg";
-import book from "../source/images/book.svg";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { memo, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import axiosConfig from "../axiosConfig";
+import * as actions from "../store/actions";
 
 function Intro() {
+  const { isLoading } = useSelector((state) => state.app);
+  const dispatch = useDispatch();
+  const [postLeft, setPostLeft] = useState(null);
+  const [postRight, setPostRight] = useState([]);
+  useEffect(() => {
+    dispatch(actions.loading(true));
+    axiosConfig
+      .get(`/api/posts/limit?limit=3`)
+      .then((data) => {
+        setPostLeft(data?.data[0]);
+        setPostRight(data?.data?.filter((item) => item?._id !== postLeft?._id));
+        dispatch(actions.loading(false));
+      })
+      .catch((err) => {
+        dispatch(actions.loading(false));
+        console.log(err);
+      });
+  }, []);
   return (
-    <section className="relative w-full h-screen hidden md:block">
-      <span className="absolute left-[10%] top-[20%] w-60 h-40 bg-topLeft bg-center bg-no-repeat"></span>
-      <span className="absolute left-[10%] bottom-[10%] w-60 h-40 bg-botLeft bg-center bg-no-repeat"></span>
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 z-10 font-banner text-4xl md:text-6xl text-center">
-        <span className="relative">
-          <span className="absolute left-[-40%] top-[-10%] -rotate-12 w-8 h-8 rounded-full text-9xl text-orange-300">
-            +
-          </span>
-          <span className="absolute left-[-10%] top-[-30%] w-8 h-8 rounded-full border-4 border-orange-300"></span>
-          Take it
-          <span className="absolute top-[-90%] right-[-110%] z-0 w-40 h-40">
-            <img src={book} alt="icon" className="w-full" />
-          </span>
-        </span>
-        <span className="flex items-center">
-          <span className="text-white bg-gray-500 p-4 mr-8 rounded-md">
-            the
-          </span>
-          <span className="flex flex-col items-start">
-            <span className="flex gap-2">
-              <span>to</span>
-              <span className="px-2 self-baseline text-base border border-gray-500 rounded-full cursor-pointer">
-                Let's start
-              </span>
-            </span>
-            <span className="">next</span>
-          </span>
-        </span>
-        <span className="relative">
-          levels
-          <span className="absolute left-[-130%] -rotate-12 z-0">
-            <img src={earth} alt="icon" className="w-40 h-40" />
-          </span>
-          <span className="absolute left-[80%] w-20 h-20 rounded-full border-4 border-orange-300"></span>
-        </span>
+    <section className="grid w-full h-full max-h-[400px] mt-20">
+      <div className="row h-full overflow-hidden">
+        <div className="h-full col c-12 l-7">
+          <div className="relative w-full h-full rounded-md overflow-hidden cursor-pointer">
+            <section className="absolute bottom-10 left-4 w-4/5 p-4 bg-alpha rounded-lg">
+              <h3 className="font-semibold line-clamp-1">{postLeft?.title}</h3>
+              <p className="line-clamp-2">{postLeft?.description}</p>
+            </section>
+            <img
+              className="w-full h-full object-cover"
+              alt={postLeft?.title}
+              src={postLeft?.thumbnail?.url}
+            />
+          </div>
+        </div>
+        <div className="h-full col c-12 l-5">
+          <div className="flex flex-col gap-4 h-full">
+            <div className="relative w-full h-full rounded-md overflow-hidden cursor-pointer">
+              <section className="absolute bottom-4 left-4 w-4/5 p-4 bg-alpha rounded-lg">
+                <h3 className="font-semibold line-clamp-1">
+                  {postRight[0]?.title}
+                </h3>
+                <p className="line-clamp-2">{postRight[0]?.description}</p>
+              </section>
+              <img
+                className="w-full h-full object-cover"
+                alt={postRight[0]?.title}
+                src={postRight[0]?.thumbnail?.url}
+              />
+            </div>
+            <div className="relative w-full h-full rounded-md overflow-hidden cursor-pointer">
+              <section className="absolute bottom-4 left-4 w-4/5 p-4 bg-alpha rounded-lg">
+                <h3 className="font-semibold line-clamp-1">
+                  {postRight[1]?.title}
+                </h3>
+                <p className="line-clamp-2">{postRight[1]?.description}</p>
+              </section>
+              <img
+                className="w-full h-full object-cover"
+                alt={postRight[1]?.title}
+                src={postRight[1]?.thumbnail?.url}
+              />
+            </div>
+          </div>
+        </div>
       </div>
-      <span className="absolute right-[10%] top-[20%] w-60 h-40 bg-topRight bg-center bg-no-repeat"></span>
-      <span className="absolute right-[10%] bottom-[10%] w-60 h-40 bg-botRight bg-center bg-no-repeat"></span>
     </section>
   );
 }

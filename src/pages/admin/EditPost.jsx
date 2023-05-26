@@ -60,7 +60,6 @@ function EditPost({ isUpdate }) {
     if (isUpdate) {
       // update post
       if (files) {
-        dispatch(actions.loading(true));
         const dataImage = new FormData();
         dataImage.append("file", files);
         dataImage.append("upload_preset", "conal-blog");
@@ -94,15 +93,12 @@ function EditPost({ isUpdate }) {
                   .then((res) => {
                     if (res.status === 200) {
                       navigate("/system");
-                      dispatch(actions.loading(false));
                       toast.success("Update post success");
                     } else {
-                      dispatch(actions.loading(false));
                       toast.error("Post update error");
                     }
                   })
                   .catch((err) => {
-                    dispatch(actions.loading(false));
                     toast.error("Post update error");
                     console.log(err);
                   });
@@ -123,27 +119,22 @@ function EditPost({ isUpdate }) {
             .then((res) => {
               if (res.status === 200) {
                 navigate("/system");
-                dispatch(actions.loading(false));
                 toast.success("Update post success");
               } else {
-                dispatch(actions.loading(false));
                 toast.error("Post update error");
               }
             })
             .catch((err) => {
-              dispatch(actions.loading(false));
               toast.error("Post update error");
               console.log(err);
             });
         } else {
-          dispatch(actions.loading(false));
           toast.warn("Fields are required");
         }
       }
     } else {
       // create new post
       if (files) {
-        dispatch(actions.loading(true));
         const dataImage = new FormData();
         dataImage.append("file", files);
         dataImage.append("upload_preset", "conal-blog");
@@ -181,22 +172,18 @@ function EditPost({ isUpdate }) {
                       setTag("");
                       setImage("");
                       setFiles("");
-                      dispatch(actions.loading(false));
                       toast.success("Create post successfully!");
                     } else {
-                      dispatch(actions.loading(false));
                       toast.warn("Create post feild");
                     }
                   })
                   .catch((err) => console.log(err));
               } else {
-                dispatch(actions.loading(false));
                 toast.warn("Fields are required");
               }
             }
           })
           .catch((err) => {
-            dispatch(actions.loading(false));
             toast.error("Couldn't create a post");
             console.log(err);
           });

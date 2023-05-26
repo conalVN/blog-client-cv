@@ -7,14 +7,17 @@ export const nav = [
   {
     path: "",
     name: "Home",
+    icon: "home_app_logo",
   },
   {
     path: "/posts",
     name: "Posts",
+    icon: "topic",
   },
   {
     path: "/about",
     name: "About",
+    icon: "perm_contact_calendar",
   },
 ];
 
