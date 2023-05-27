@@ -24,6 +24,20 @@ module.exports = {
         botRight: "url('../src/source/images/rightBot.svg')",
         about: "url('../src/source/images/happy.jpg')",
       },
+      animation: {
+        "skeleton-text": "skeleton-text 1s linear infinite",
+        "skeleton-image": "skeleton-image 1s linear infinite",
+      },
+      keyframes: {
+        "skeleton-text": {
+          "0%": { backgroundColor: "hsl(200, 20%, 80%)" },
+          "100%": { backgroundColor: "hsl(200, 20%, 95%)" },
+        },
+        "skeleton-image": {
+          "0%": { backgroundColor: "#e5e7eb" },
+          "100%": { backgroundColor: "#f9fafb" },
+        },
+      },
     },
   },
   plugins: [],

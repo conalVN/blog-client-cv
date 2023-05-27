@@ -1,13 +1,18 @@
 import { memo } from "react";
 
 function Pagination({ curPage, totalPost, paginate }) {
+  console.log(totalPost);
   const pages = [];
 
-  for (let i = 1; i <= Math.ceil(totalPost / 9); i++) {
+  for (let i = 1; i <= Math.ceil(totalPost / 12); i++) {
     pages.push(i);
   }
   return (
-    <div className="flex justify-center my-4">
+    <div
+      className={`flex justify-center my-4 ${
+        totalPost !== 0 ? "block" : "invisible"
+      }`}
+    >
       <ul className="flex items-center gap-4 w-max text-xl px-10 py-2 rounded-md bg-white shadow-md">
         {curPage !== 1 && (
           <li

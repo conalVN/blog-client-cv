@@ -1,20 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useEffect, useState } from "react";
+import { memo, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 import axiosConfig from "../axiosConfig";
 import * as actions from "../store/actions";
-import PostNew from "./PostNew";
+import { PostNew, SkeletonNew } from "../components";
 
 function NewFeed() {
   const { isLoading } = useSelector((state) => state.app);
   const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(actions.loading(true));
     axiosConfig
-      .get(`/api/posts/limit?limit=3`)
+      .get(`/api/posts/limit?limit=3&page=2`)
       .then((data) => {
         setPosts(data?.data);
         dispatch(actions.loading(false));
@@ -30,11 +30,15 @@ function NewFeed() {
       <h1 className="py-4 text-2xl md:text-4xl font-bold font-logo text-center">
         News feed
       </h1>
-      <div className="flex flex-col gap-4">
-        {posts?.map((post, index) => {
-          return <PostNew data={post} i={index} key={post?._id} />;
-        })}
-      </div>
+      {isLoading ? (
+        <SkeletonNew />
+      ) : (
+        <div className="flex flex-col gap-4">
+          {posts?.map((post, index) => {
+            return <PostNew data={post} i={index} key={post?._id} />;
+          })}
+        </div>
+      )}
     </div>
   );
 }

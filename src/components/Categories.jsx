@@ -1,9 +1,11 @@
 import { memo } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import * as actions from "../store/actions";
 
 function Categories({ setCurPage }) {
   const { tags } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
   return (
     <div className="">
       <h3 className="flex items-center gap-1 text-xl uppercase py-1 mb-2 border-b-2 border-orange-400">
@@ -12,7 +14,10 @@ function Categories({ setCurPage }) {
       <ul className="flex flex-wrap gap-2">
         <li
           className="bg-orange-400 text-white px-2 cursor-pointer"
-          onClick={() => setCurPage(1)}
+          onClick={() => {
+            dispatch(actions.loading(true));
+            setCurPage(1);
+          }}
         >
           <Link to={`/posts`}>#all</Link>
         </li>
@@ -23,7 +28,10 @@ function Categories({ setCurPage }) {
                 <li
                   className="bg-orange-400 text-white px-2 cursor-pointer"
                   key={tag}
-                  onClick={() => setCurPage(1)}
+                  onClick={() => {
+                    dispatch(actions.loading(true));
+                    setCurPage(1);
+                  }}
                 >
                   <Link to={`/posts?category=${tag}`}>#{tag}</Link>
                 </li>

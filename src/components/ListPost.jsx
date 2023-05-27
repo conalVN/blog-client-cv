@@ -17,7 +17,10 @@ function ListPost({ title, list }) {
             <li className="">
               <Link
                 to={`/posts/${item?._id}`}
-                onClick={() => dispatch(actions.setCurPostId(item?._id))}
+                onClick={() => {
+                  dispatch(actions.setCurPostId(item?._id));
+                  dispatch(actions.loading(true));
+                }}
                 key={item?._id}
                 className="underline line-clamp-2 hover:text-orange-400"
               >

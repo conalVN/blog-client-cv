@@ -1,5 +1,8 @@
-export { default as LoadingPage } from "./LoadingPage.jsx";
 export { default as LoadingData } from "./LoadingData.jsx";
+export { default as SkeletonIntro } from "./SkeletonIntro.jsx";
+export { default as SkeletonNew } from "./SkeletonNew.jsx";
+export { default as SkeletonPost } from "./SkeletonPost.jsx";
+export { default as SkeletonDetail } from "./SkeletonDetail.jsx";
 export { default as Popup } from "./Popup.jsx";
 export { default as Header } from "./Header.jsx";
 export { default as MenuMobile } from "./MenuMobile.jsx";

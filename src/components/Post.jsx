@@ -12,7 +12,10 @@ function Post({ data }) {
       <div className="rounded-lg overflow-hidden">
         <Link
           to={`/posts/${data?._id}`}
-          onClick={() => dispatch(actions.setCurPostId(data?._id))}
+          onClick={() => {
+            dispatch(actions.setCurPostId(data?._id));
+            dispatch(actions.loading(true));
+          }}
         >
           <img
             src={data?.thumbnail?.url}
@@ -25,7 +28,10 @@ function Post({ data }) {
         <h3 className="font-semibold line-clamp-1 cursor-pointer">
           <Link
             to={`/posts/${data?._id}`}
-            onClick={() => dispatch(actions.setCurPostId(data?._id))}
+            onClick={() => {
+              dispatch(actions.setCurPostId(data?._id));
+              dispatch(actions.loading(true));
+            }}
           >
             {data?.title}
           </Link>
