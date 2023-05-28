@@ -23,7 +23,6 @@ function List({ curPage, setCurPage }) {
     dispatch(actions.loading(true));
     setCurPage(num);
   };
-  console.log(total);
   return (
     <>
       {posts?.length > 0 && (

@@ -1,7 +1,6 @@
 import { memo } from "react";
 
 function Pagination({ curPage, totalPost, paginate }) {
-  console.log(totalPost);
   const pages = [];
 
   for (let i = 1; i <= Math.ceil(totalPost / 12); i++) {

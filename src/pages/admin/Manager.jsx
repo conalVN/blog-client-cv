@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import axiosConfig from "../../axiosConfig";
 import { toast } from "react-toastify";
 import { PostAdmin, ToolManager } from "../../components";
@@ -37,7 +37,9 @@ function Manager() {
             className={`flex items-center justify-center p-2 bg-gray-400 rounded-md cursor-pointer select-none ${
               page === 1 && "invisible"
             }`}
-            onClick={() => setPage((prev) => prev - 1)}
+            onClick={() => {
+              setPage((prev) => prev - 1);
+            }}
           >
             <span className="material-symbols-outlined">navigate_before</span>
             <span className="">Previous</span>
@@ -54,7 +56,9 @@ function Manager() {
             className={`flex items-center justify-center p-2 bg-gray-400 rounded-md cursor-pointer select-none ${
               data?.length < limit && "invisible"
             }`}
-            onClick={() => setPage((prev) => prev + 1)}
+            onClick={() => {
+              setPage((prev) => prev + 1);
+            }}
           >
             <span className="">Next</span>
             <span className="material-symbols-outlined">navigate_next</span>

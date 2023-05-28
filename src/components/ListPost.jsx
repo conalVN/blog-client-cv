@@ -14,7 +14,7 @@ function ListPost({ title, list }) {
       <ul className="flex flex-col gap-4">
         {list?.map((item) => {
           return (
-            <li className="">
+            <li className="" key={item?._id}>
               <Link
                 to={`/posts/${item?._id}`}
                 onClick={() => {

@@ -7,10 +7,8 @@ import { toast } from "react-toastify";
 import axiosConfig from "../../axiosConfig";
 import * as actions from "../../store/actions";
 import { Categories, ListPost } from "../../components";
-import { SkeletonPost } from "../../components";
 
 function Posts({ curPage, setCurPage }) {
-  const { isLoading } = useSelector((state) => state.app);
   const { curPostId, related } = useSelector((state) => state.post);
   const location = useLocation();
   const dispatch = useDispatch();

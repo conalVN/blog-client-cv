@@ -13,11 +13,14 @@ import {
 } from "./pages/public";
 import { Dashboard, EditPost } from "./pages/admin";
 import Manager from "./pages/admin/Manager";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { List } from "./components";
 
 function App() {
   const [curPage, setCurPage] = useState(1);
+  useEffect(() => {
+    window.onbeforeunload = () => window.scrollTo(0, 0);
+  });
 
   return (
     <>
