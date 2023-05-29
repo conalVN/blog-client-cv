@@ -17,7 +17,7 @@ export const path = {
   MANAGER: "",
   CREATE_POST: "create",
   UPDATE_POST: "update/:id",
-  LOGIN: "user/login",
+  LOGIN: "login",
 
   STAR: "*",
 };

@@ -8,7 +8,7 @@ function SidebarLeft() {
   const navigate = useNavigate();
   const logout = () => {
     Cookies.remove("token");
-    navigate("/user/login");
+    navigate("/login");
     toast.success("Log out success!");
   };
 

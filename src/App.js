@@ -11,7 +11,7 @@ import {
   PageNotFound,
   Posts,
 } from "./pages/public";
-import { Dashboard, EditPost } from "./pages/admin";
+import { Dashboard, EditPost, Login } from "./pages/admin";
 import Manager from "./pages/admin/Manager";
 import { useEffect, useState } from "react";
 import { List } from "./components";
@@ -19,7 +19,8 @@ import { List } from "./components";
 function App() {
   const [curPage, setCurPage] = useState(1);
   useEffect(() => {
-    window.onbeforeunload = () => window.scrollTo(0, 0);
+    window.onbeforeunload = () =>
+      window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path={path.CREATE_POST} element={<EditPost />} />
           <Route path={path.UPDATE_POST} element={<EditPost isUpdate />} />
         </Route>
+        <Route path={path.LOGIN} element={<Login />} />
       </Routes>
       <ToastContainer
         position="top-right"

@@ -69,6 +69,30 @@ export const about = {
     Best regards,<br /> 
     <i>Dinh Van Thanh</i>
     `,
+  socials: [
+    {
+      name: "Github",
+      icon: "",
+      link: "https://github.com/conalVN",
+    },
+    {
+      name: "Linkedln",
+      icon: "",
+      link: "https://www.linkedin.com/in/conalvn/",
+    },
+    {
+      name: "Facbook",
+      icon: "",
+      link: "https://www.facebook.com/conalvn/",
+    },
+    {
+      name: "Instagram",
+      icon: "",
+      link: "https://www.instagram.com/conalvn_/",
+    },
+  ],
+  email: "develooper2022@gmail.com",
+  phone: "+84 919244172",
 };
 
 export const menu = [

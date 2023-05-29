@@ -15,7 +15,7 @@ function PostNew({ data, i }) {
         <img
           src={data?.thumbnail?.url}
           alt={data?.title}
-          className="w-full h-60 object-cover"
+          className="w-full h-60 object-cover transition-all hover:scale-110"
         />
       </div>
       <div className="w-1/3 flex flex-col gap-2">

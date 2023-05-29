@@ -1,8 +1,8 @@
 import axios from "axios";
-// https://blog-apis-v1.vercel.app
 const instance = axios.create({
   baseURL: process.env.REACT_APP_URL_SERVER,
   headers: { "X-Custom-Header": "foobar", "Content-Type": "application/json" },
+  withCredentials: true,
 });
 
 // Add a request interceptor

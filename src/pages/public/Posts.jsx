@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -12,6 +12,7 @@ function Posts({ curPage, setCurPage }) {
   const { curPostId, related } = useSelector((state) => state.post);
   const location = useLocation();
   const dispatch = useDispatch();
+  const ref = useRef();
   const [searchParams] = useSearchParams();
   const [randomPost, setRandomPost] = useState([]);
   useEffect(() => {
@@ -78,12 +79,13 @@ function Posts({ curPage, setCurPage }) {
           console.log(err);
         });
     }
+    // ref.current.scrollIntoView({ top: 0 });
   }, [curPage, location, searchParams]);
 
   return (
-    <div className="grid mt-20 px-4">
-      <div className="row">
-        <div className="col l-9">
+    <div className="grid mt-10 md:mt-20 px-4" ref={ref}>
+      <div className="row flex-col md:flex-row">
+        <div className="col l-9 w-full">
           <Outlet />
         </div>
         <aside className="col l-3 my-2">

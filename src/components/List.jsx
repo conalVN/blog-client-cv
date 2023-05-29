@@ -30,7 +30,7 @@ function List({ curPage, setCurPage }) {
           {isLoading ? (
             <SkeletonPost />
           ) : (
-            <div className="row">
+            <div className="row gap-y-4">
               {posts?.map((post) => {
                 return <Post data={post} key={post?._id} />;
               })}

@@ -18,7 +18,7 @@ function SkeletonPost() {
           </div>
         </div>
       </div>
-      <div className="flex-1 flex flex-col gap-2 border border-orange-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+      <div className="flex-1 hidden md:flex flex-col gap-2 border border-orange-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
         <div className="h-40 w-full animate-skeleton-image rounded-md"></div>
         <div className="animate-pulse space-x-4">
           <div className="flex-1 space-y-6 py-1">
@@ -33,7 +33,7 @@ function SkeletonPost() {
           </div>
         </div>
       </div>
-      <div className="flex-1 flex flex-col gap-2 border border-orange-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+      <div className="flex-1 hidden md:flex flex-col gap-2 border border-orange-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
         <div className="h-40 w-full animate-skeleton-image rounded-md"></div>
         <div className="animate-pulse space-x-4">
           <div className="flex-1 space-y-6 py-1">

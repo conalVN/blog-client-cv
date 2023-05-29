@@ -21,7 +21,7 @@ function Layout() {
   }, []);
 
   return (
-    <div className="w-full h-full max-w-7xl mx-auto overflow-x-hidden">
+    <div className="w-full h-full max-w-7xl mx-auto overflow-x-hidden scroll-smooth">
       <Header />
       <MenuMobile />
       <div className="h-full">

@@ -1,13 +1,17 @@
-import { memo, useState } from "react";
+import React, { memo, useState } from "react";
 import { filterPost } from "../utils/constant";
 
-function ToolManager() {
+// const ToolManager = React.forwardRef((ref) =>);
+function ToolManager({ forwardedRef }) {
   const [isShow, setIsShow] = useState(false);
   function handleFilterPosts() {
     setIsShow(!isShow);
   }
   return (
-    <div className="flex gap-1 py-2 my-4 border-b-4 border-orange-400">
+    <div
+      className="flex gap-1 py-2 my-4 border-b-4 border-orange-400"
+      ref={forwardedRef}
+    >
       <div className="w-40 flex items-center">
         <span
           className="relative cursor-pointer select-none"

@@ -9,6 +9,7 @@ function Manager() {
   const [data, setData] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
+  const refTool = useRef(null);
   useLayoutEffect(() => {
     axiosConfig
       .get(
@@ -23,9 +24,18 @@ function Manager() {
       });
   }, [page, curPostId]);
 
+  function prevPage() {
+    setPage((prev) => prev - 1);
+    refTool.current.scrollIntoView({ top: 0, behavior: "smooth" });
+  }
+  function nextPage() {
+    setPage((prev) => prev + 1);
+    refTool.current.scrollIntoView({ top: 0, behavior: "smooth" });
+  }
+
   return (
     <div className="my-4">
-      <ToolManager />
+      <ToolManager forwardedRef={refTool} />
       <div className="flex flex-col gap-2">
         {data?.map((post) => {
           return <PostAdmin data={post} key={post?._id} />;
@@ -37,9 +47,7 @@ function Manager() {
             className={`flex items-center justify-center p-2 bg-gray-400 rounded-md cursor-pointer select-none ${
               page === 1 && "invisible"
             }`}
-            onClick={() => {
-              setPage((prev) => prev - 1);
-            }}
+            onClick={prevPage}
           >
             <span className="material-symbols-outlined">navigate_before</span>
             <span className="">Previous</span>
@@ -56,9 +64,7 @@ function Manager() {
             className={`flex items-center justify-center p-2 bg-gray-400 rounded-md cursor-pointer select-none ${
               data?.length < limit && "invisible"
             }`}
-            onClick={() => {
-              setPage((prev) => prev + 1);
-            }}
+            onClick={nextPage}
           >
             <span className="">Next</span>
             <span className="material-symbols-outlined">navigate_next</span>

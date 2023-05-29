@@ -27,9 +27,9 @@ function NewFeed() {
   }, []);
   return (
     <div className="mt-4">
-      <h1 className="py-4 text-2xl md:text-4xl font-bold font-logo text-center">
+      {/* <h1 className="py-4 text-2xl md:text-4xl font-bold font-logo text-center">
         News feed
-      </h1>
+      </h1> */}
       {isLoading ? (
         <SkeletonNew />
       ) : (

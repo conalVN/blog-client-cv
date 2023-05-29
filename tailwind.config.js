@@ -18,10 +18,7 @@ module.exports = {
         "alpha-1": "rgba(0, 0, 0, .4)",
       },
       backgroundImage: {
-        topLeft: "url('../src/source/images/leftTop.svg')",
-        botLeft: "url('../src/source/images/leftBot.svg')",
-        topRight: "url('../src/source/images/rightTop.svg')",
-        botRight: "url('../src/source/images/rightBot.svg')",
+        dev: "url('../src/source/images/developer-bro.svg')",
         about: "url('../src/source/images/happy.jpg')",
       },
       animation: {

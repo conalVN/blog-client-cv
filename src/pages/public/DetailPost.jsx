@@ -32,17 +32,17 @@ function DetailPost() {
       {isLoading ? (
         <SkeletonDetail />
       ) : (
-        <div className="ql-snow">
-          <div className="border-none">
+        <div className="ql-snow w-full">
+          <div className="border-none w-full border border-red-400">
             <img
               src={curPost?.thumbnail?.url}
               alt={curPost?.title}
-              className="w-full h-400 object-contain bg-center"
+              className="w-full h-40 md:h-400 rounded-md object-cover md:object-contain bg-center"
             />
           </div>
-          <div className="flex flex-col gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 w-full">
             <h2 className="font-bold text-2xl">{curPost?.title}</h2>
-            <ul className="flex gap-2">
+            <ul className="flex flex-wrap gap-2">
               {curPost?.categories?.map((tag) => {
                 return (
                   <li

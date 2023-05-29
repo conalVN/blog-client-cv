@@ -8,7 +8,7 @@ function Post({ data }) {
   const dispatch = useDispatch();
 
   return (
-    <div className="col c-12 m-4 mx-0">
+    <div className="col c-9 s-4 l-4 shadow rounded-md py-2 mx-auto md:mx-0 border border-transparent hover:border-orange-300">
       <div className="rounded-lg overflow-hidden">
         <Link
           to={`/posts/${data?._id}`}
@@ -20,11 +20,11 @@ function Post({ data }) {
           <img
             src={data?.thumbnail?.url}
             alt={data?.title}
-            className="w-full h-40 object-cover cursor-pointer"
+            className="w-full h-40 object-cover cursor-pointer transition-all hover:scale-110"
           />
         </Link>
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 mt-2">
         <h3 className="font-semibold line-clamp-1 cursor-pointer">
           <Link
             to={`/posts/${data?._id}`}
