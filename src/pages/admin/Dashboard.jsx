@@ -8,8 +8,8 @@ function Dashboard() {
   const { isPopup } = useSelector((state) => state.app);
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(Cookies.get("token"));
-    if (!Cookies.get("token")) {
+    console.log(Cookies.get("key"));
+    if (!Cookies.get("key")) {
       navigate(`/login`);
     }
   });
