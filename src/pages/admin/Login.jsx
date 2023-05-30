@@ -1,14 +1,17 @@
 import { memo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { InputText } from "../../components";
 import axiosConfig from "../../axiosConfig";
-import { toast } from "react-toastify";
+import * as actions from "../../store/actions";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   function handleEmail() {
     if (email) {
       if (!email.match(/[^\s@]+@[^\s@]+\.[^\s@]+/gi)) {
@@ -26,9 +29,10 @@ function Login() {
     e.preventDefault();
     if (email && password) {
       axiosConfig
-        .post(`/api/user/login`, { email, password })
+        .post(`/api/user/login`, { email, password }, { withCredentials: true })
         .then((data) => {
           if (data.status === 200) {
+            dispatch(actions.login(true));
             navigate(`/system`);
             toast.success(data?.data?.message);
           }

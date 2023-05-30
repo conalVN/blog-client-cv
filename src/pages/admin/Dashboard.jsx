@@ -1,18 +1,19 @@
-import { memo, useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { memo, useEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { Popup, SidebarLeft } from "../../components";
 
 function Dashboard() {
-  const { isPopup } = useSelector((state) => state.app);
+  const { isPopup, isLogin } = useSelector((state) => state.app);
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
-    console.log(Cookies.get("key"));
-    if (!Cookies.get("key")) {
+    if (location.pathname.includes("/system") && !isLogin) {
       navigate(`/login`);
     }
-  });
+  }, [isLogin, location]);
 
   return (
     <div className="grid h-screen overflow-hidden">

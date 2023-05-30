@@ -13,7 +13,10 @@ function Manager() {
   useLayoutEffect(() => {
     axiosConfig
       .get(
-        `/api/posts/limit${page !== 1 ? `?page=${page}&limit=10` : `?limit=10`}`
+        `/api/posts/limit${
+          page !== 1 ? `?page=${page}&limit=10` : `?limit=10`
+        }`,
+        { withCredentials: "same-origin" }
       )
       .then((data) => {
         setData(data?.data);

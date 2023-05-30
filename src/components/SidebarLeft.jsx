@@ -7,7 +7,7 @@ import { menu } from "../utils/constant";
 function SidebarLeft() {
   const navigate = useNavigate();
   const logout = () => {
-    Cookies.remove("token");
+    Cookies.remove("key");
     navigate("/login");
     toast.success("Log out success!");
   };
