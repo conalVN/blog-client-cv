@@ -33,7 +33,7 @@ function NewFeed() {
       {isLoading ? (
         <SkeletonNew />
       ) : (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 px-4">
           {posts?.map((post, index) => {
             return <PostNew data={post} i={index} key={post?._id} />;
           })}

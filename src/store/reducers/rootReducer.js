@@ -13,11 +13,17 @@ const commonConfig = {
 const postConfig = {
   ...commonConfig,
   key: "posts",
-  whitelist: ["posts"],
+  whitelist: ["posts", "curPostId"],
+};
+
+const appConfig = {
+  ...commonConfig,
+  key: "app",
+  whitelist: ["isLogin"],
 };
 
 const rootReducer = combineReducers({
-  app: appReducer,
+  app: persistReducer(appConfig, appReducer),
   post: persistReducer(postConfig, postReducer),
 });
 

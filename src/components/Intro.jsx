@@ -34,12 +34,12 @@ function Intro() {
     navigate(`/posts/${id}`);
   }
   return (
-    <section className="grid w-full h-full max-h-[400px] mt-20">
+    <section className="w-full h-full mt-10 md:mt-20">
       {isLoading ? (
         <SkeletonIntro />
       ) : (
-        <div className="row h-full overflow-hidden">
-          <div className="h-full col c-12 l-7">
+        <div className="flex gap-2 w-full px-4 h-[40vh] md:h-[70vh] max-h-[400px] overflow-hidden">
+          <div className="flex-6 w-full h-full">
             <div
               className="relative w-full h-full rounded-md overflow-hidden cursor-pointer"
               onClick={() => handleClick(postLeft?._id)}
@@ -57,8 +57,8 @@ function Intro() {
               />
             </div>
           </div>
-          <div className="h-full col c-12 l-5">
-            <div className="flex flex-col gap-4 h-full">
+          <div className="hidden md:inline flex-4 w-full h-full">
+            <div className="flex flex-col gap-2 h-full">
               <div
                 className="relative w-full h-full rounded-md overflow-hidden cursor-pointer"
                 onClick={() => handleClick(postRight[0]?._id)}

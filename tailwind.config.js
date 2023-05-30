@@ -21,6 +21,13 @@ module.exports = {
         dev: "url('../src/source/images/developer-bro.svg')",
         about: "url('../src/source/images/happy.jpg')",
       },
+      flex: {
+        c: "0 1 80%",
+        m: "0 1 48%",
+        l: "0 1 30%",
+        6: "1 1 60%",
+        4: "1 1 40%",
+      },
       animation: {
         "skeleton-text": "skeleton-text 1s linear infinite",
         "skeleton-image": "skeleton-image 1s linear infinite",

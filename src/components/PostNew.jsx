@@ -7,18 +7,18 @@ function PostNew({ data, i }) {
   const dispatch = useDispatch();
   return (
     <div
-      className={`flex justify-center gap-2 mx-auto ${
-        i % 2 !== 0 ? "flex-row-reverse" : ""
+      className={`flex flex-col justify-center gap-2 mx-auto ${
+        i % 2 !== 0 ? "md:flex-row-reverse" : "md:flex-row"
       }`}
     >
-      <div className="w-1/2 rounded-lg overflow-hidden">
+      <div className="w-full md:w-1/2 rounded-lg overflow-hidden">
         <img
           src={data?.thumbnail?.url}
           alt={data?.title}
           className="w-full h-60 object-cover transition-all hover:scale-110"
         />
       </div>
-      <div className="w-1/3 flex flex-col gap-2">
+      <div className="w-full md:w-1/3 flex flex-col gap-2">
         <h2 className="font-bold text-lg line-clamp-1">{data?.title}</h2>
         <p className="line-clamp-3">{data?.description}</p>
         <Link

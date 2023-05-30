@@ -8,7 +8,7 @@ function Post({ data }) {
   const dispatch = useDispatch();
 
   return (
-    <div className="col c-9 s-4 l-4 shadow rounded-md py-2 mx-auto md:mx-0 border border-transparent hover:border-orange-300">
+    <div className="col flex-c md:flex-m lg:flex-l shadow rounded-md py-2 mx-auto md:mx-0 border border-transparent hover:border-orange-300">
       <div className="rounded-lg overflow-hidden">
         <Link
           to={`/posts/${data?._id}`}

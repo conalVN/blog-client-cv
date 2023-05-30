@@ -35,7 +35,7 @@ function MenuMobile() {
                       onClick={() => setIsOpen(false)}
                     >
                       <Link to={item?.path} className="flex items-center gap-2">
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                           {item?.icon}
                         </span>
                         {item?.name}
