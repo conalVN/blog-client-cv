@@ -15,6 +15,10 @@ ul {
 input {
   outline: none;
 }
+img {
+  border: none;
+  outline: none;
+}
 ::-webkit-scrollbar {
   width: 5px;
 }

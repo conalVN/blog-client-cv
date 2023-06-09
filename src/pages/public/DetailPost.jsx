@@ -32,7 +32,7 @@ function DetailPost() {
       {isLoading ? (
         <SkeletonDetail />
       ) : (
-        <div className="ql-snow w-full">
+        <div className="ql-snow w-full px-4">
           <div className="border-none w-full border border-red-400">
             <img
               src={curPost?.thumbnail?.url}
