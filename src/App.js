@@ -47,6 +47,7 @@ function App() {
           <Route path={path.UPDATE_POST} element={<EditPost isUpdate />} />
         </Route>
         <Route path={path.LOGIN} element={<Login />} />
+        <Route path={path.REGISTER} element={<Login isRegister />} />
       </Routes>
       <ToastContainer
         position="top-right"

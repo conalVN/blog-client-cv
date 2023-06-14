@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import moment from "moment";
 import axiosConfig from "../../axiosConfig";
 import * as actions from "../../store/actions";
-import { SkeletonDetail } from "../../components";
+import { CommentThread, SkeletonDetail } from "../../components";
 
 function DetailPost() {
   const { isLoading } = useSelector((state) => state.app);
@@ -32,39 +32,54 @@ function DetailPost() {
       {isLoading ? (
         <SkeletonDetail />
       ) : (
-        <div className="ql-snow w-full px-4">
-          <div className="border-none w-full border border-red-400">
-            <img
-              src={curPost?.thumbnail?.url}
-              alt={curPost?.title}
-              className="w-full h-40 md:h-400 rounded-md object-cover md:object-contain bg-center"
-            />
+        <div className="w-full h-full">
+          <div className="ql-snow w-full px-4">
+            <div className="border-none w-full border border-red-400">
+              <img
+                src={curPost?.thumbnail?.url}
+                alt={curPost?.title}
+                className="w-full h-40 md:h-400 rounded-md object-cover md:object-contain bg-center"
+              />
+            </div>
+            <div className="flex flex-col gap-2 mt-4 w-full">
+              <h2 className="font-bold text-2xl">{curPost?.title}</h2>
+              <ul className="flex flex-wrap gap-2">
+                {curPost?.categories?.map((tag) => {
+                  return (
+                    <li
+                      className="px-4 py-1 text-white bg-orange-400 rounded-md cursor-pointer"
+                      key={tag}
+                      onClick={() => dispatch(actions.loading(true))}
+                    >
+                      <Link
+                        to={`/posts?category=${tag}`}
+                        className="text-white"
+                      >
+                        #{tag}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <span className="text-gray-400">
+                {moment(curPost?.createdAt).format("L")}
+              </span>
+              <p
+                className="ql-editor"
+                dangerouslySetInnerHTML={{ __html: curPost?.content }}
+              ></p>
+            </div>
           </div>
-          <div className="flex flex-col gap-2 mt-4 w-full">
-            <h2 className="font-bold text-2xl">{curPost?.title}</h2>
-            <ul className="flex flex-wrap gap-2">
-              {curPost?.categories?.map((tag) => {
-                return (
-                  <li
-                    className="px-4 py-1 text-white bg-orange-400 rounded-md cursor-pointer"
-                    key={tag}
-                    onClick={() => dispatch(actions.loading(true))}
-                  >
-                    <Link to={`/posts?category=${tag}`} className="text-white">
-                      #{tag}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <span className="text-gray-400">
-              {moment(curPost?.createdAt).format("L")}
-            </span>
-            <p
-              className="ql-editor"
-              dangerouslySetInnerHTML={{ __html: curPost?.content }}
-            ></p>
-          </div>
+          {true ? (
+            <div className="w-full text-center">
+              Vui lòng đăng nhập để bình luận{" "}
+              <Link to="/login" className="underline">
+                Sign in
+              </Link>
+            </div>
+          ) : (
+            <CommentThread />
+          )}
         </div>
       )}
     </>
