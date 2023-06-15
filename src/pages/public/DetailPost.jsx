@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useLayoutEffect, useState } from "react";
+import { memo, useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -9,7 +9,7 @@ import * as actions from "../../store/actions";
 import { CommentThread, SkeletonDetail } from "../../components";
 
 function DetailPost() {
-  const { isLoading } = useSelector((state) => state.app);
+  const { isLoading, isLogin } = useSelector((state) => state.app);
   const { curPostId } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const [curPost, setCurPost] = useState(null);
@@ -17,6 +17,7 @@ function DetailPost() {
     axiosConfig
       .get(`/api/posts/${curPostId}`)
       .then((data) => {
+        console.log(data);
         setCurPost(data?.data?.data);
         dispatch(actions.setRelated(data?.data?.related));
         setTimeout(() => dispatch(actions.loading(false)), 1000);
@@ -70,7 +71,7 @@ function DetailPost() {
               ></p>
             </div>
           </div>
-          {true ? (
+          {!isLogin ? (
             <div className="w-full text-center">
               Vui lòng đăng nhập để bình luận{" "}
               <Link to="/login" className="underline">

@@ -25,3 +25,4 @@ export { default as ToolManager } from "./ToolManager.jsx";
 export { default as PreviewPost } from "./PreviewPost.jsx";
 export { default as PostAdmin } from "./PostAdmin.jsx";
 export { default as CommentThread } from "./CommentThread.jsx";
+export { default as Comment } from "./Comment.jsx";

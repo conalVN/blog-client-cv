@@ -1,16 +1,19 @@
 import { memo } from "react";
-import { ProgressBar } from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 
 function LoadingData() {
   return (
-    <ProgressBar
-      height="80"
-      width="80"
-      ariaLabel="progress-bar-loading"
+    <Oval
+      height={20}
+      width={20}
+      color="#4fa94d"
       wrapperStyle={{}}
-      wrapperClass="progress-bar-wrapper"
-      borderColor="#F4442E"
-      barColor="#51E5FF"
+      wrapperClass=""
+      visible={true}
+      ariaLabel="oval-loading"
+      secondaryColor="#4fa94d"
+      strokeWidth={2}
+      strokeWidthSecondary={2}
     />
   );
 }

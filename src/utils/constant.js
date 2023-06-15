@@ -118,3 +118,14 @@ export const filterPost = [
     name: "Cũ nhất",
   },
 ];
+
+export const optionsComment = [
+  {
+    name: "Ghim",
+    icon: "push_pin",
+  },
+  {
+    name: "Loại bỏ",
+    icon: "delete",
+  },
+];

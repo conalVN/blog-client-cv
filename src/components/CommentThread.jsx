@@ -1,8 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { memo, useEffect, useRef, useState } from "react";
-import Button from "./Button";
+import { useSelector } from "react-redux";
+import { Button, Comment } from "../components";
+import axiosConfig from "../axiosConfig";
 
 function CommentThread() {
+  const { curPostId } = useSelector((state) => state.post);
   const [comment, setComment] = useState("");
+  const [commentThread, setCommentThread] = useState([]);
+  const [reload, setReload] = useState(true);
   const ref = useRef();
   useEffect(() => {
     if (comment) {
@@ -10,9 +16,34 @@ function CommentThread() {
     }
     if (!comment) ref.current.style.height = "40px";
   }, [comment]);
+
+  useEffect(() => {
+    if (reload) {
+      axiosConfig
+        .get(`/api/posts/${curPostId}/commentThread`)
+        .then((data) => {
+          console.log(data);
+          setCommentThread(data?.data?.comments);
+          setReload(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [reload]);
+
+  function createComment() {
+    axiosConfig
+      .post(`/api/posts/${curPostId}/comment`, { comment })
+      .then((data) => {
+        setReload(true);
+        setComment("");
+      })
+      .catch((err) => {});
+  }
   return (
-    <section className="w-full h-full my-10">
-      <div className="w-full h-auto">
+    <section className="w-full my-10">
+      <div className="w-full mb-8">
         <textarea
           ref={ref}
           placeholder="Viết bình luận..."
@@ -38,16 +69,14 @@ function CommentThread() {
             styles={`py-1 px-4 rounded-md bg-gray-200 ${
               comment ? "opacity-100 hover:bg-gray-300" : "opacity-50"
             }`}
-            onClick={() => {}}
+            onClick={createComment}
           />
         </div>
       </div>
-      <div className="">
-        {/* {
-          comments?.map(data => {
-            return <Comment data={data}/>
-          })
-        } */}
+      <div className="w-full h-full flex flex-col gap-4">
+        {commentThread?.map((item) => {
+          return <Comment data={item} key={item?._id} />;
+        })}
       </div>
     </section>
   );

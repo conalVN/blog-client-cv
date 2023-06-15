@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { memo, useLayoutEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { InputText, LoadingData, PreviewPost, Tool } from "../../components";
-import * as actions from "../../store/actions";
 import axiosConfig from "../../axiosConfig";
 import compareTwoArray from "../../utils/compareArray";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 function EditPost({ isUpdate }) {
   const { isLoading } = useSelector((state) => state.app);
   const { curPostId } = useSelector((state) => state.post);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [image, setImage] = useState("");
   const [files, setFiles] = useState("");

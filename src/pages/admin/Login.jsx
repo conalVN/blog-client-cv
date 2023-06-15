@@ -34,7 +34,6 @@ function Login({ isRegister }) {
         .post(`/api/user/login`, { email, password }, { withCredentials: true })
         .then((data) => {
           dispatch(actions.login(true));
-          // window.history.back();
           navigate("/");
           toast.success(data?.data?.message);
           setEmail("");
@@ -54,8 +53,7 @@ function Login({ isRegister }) {
       axiosConfig
         .post(`/api/user/register`, { username, email, password })
         .then((data) => {
-          navigate("/login");
-          toast.success("Register successful!");
+          toast.success(data?.data?.message);
           setUsername("");
           setEmail("");
           setPassword("");

@@ -10,6 +10,7 @@ import {
   Layout,
   PageNotFound,
   Posts,
+  VerifyAccount,
 } from "./pages/public";
 import { Dashboard, EditPost, Login } from "./pages/admin";
 import Manager from "./pages/admin/Manager";
@@ -48,6 +49,7 @@ function App() {
         </Route>
         <Route path={path.LOGIN} element={<Login />} />
         <Route path={path.REGISTER} element={<Login isRegister />} />
+        <Route path={path.VERIFY} element={<VerifyAccount />} />
       </Routes>
       <ToastContainer
         position="top-right"
