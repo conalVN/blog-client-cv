@@ -1,9 +1,20 @@
 import { memo, useState } from "react";
+import toast from "react-toastify";
 import noAvatar from "../source/images/noAvatar.png";
 import { optionsComment } from "../utils/constant";
+import axiosConfig from "../axiosConfig";
 
 function Comment({ data }) {
   const [showOptions, setShowOptions] = useState(false);
+  function handleDeleteComment(id) {
+    axiosConfig
+      .delete(`/api/posts/comments/${id}`)
+      .then((data) => {
+        toast.success(data?.data?.message);
+      })
+      .catch((err) => console.log(err));
+  }
+  function handleGimComment(id) {}
   return (
     <div className="flex gap-4 p-2">
       <div className="w-12 h-12 rounded-full shadow overflow-hidden">
@@ -45,7 +56,12 @@ function Comment({ data }) {
                 return (
                   <li
                     className="flex gap-2 py-2 pl-2 pr-8 hover:bg-gray-100"
-                    key={opt}
+                    key={opt.type}
+                    onClick={() =>
+                      opt.type === 1
+                        ? handleDeleteComment(data?._id)
+                        : handleGimComment(data?._id)
+                    }
                   >
                     <span className="material-symbols-outlined">
                       {opt?.icon}

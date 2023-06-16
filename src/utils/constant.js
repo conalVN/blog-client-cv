@@ -123,9 +123,11 @@ export const optionsComment = [
   {
     name: "Ghim",
     icon: "push_pin",
+    type: 0,
   },
   {
     name: "Loại bỏ",
     icon: "delete",
+    type: 1,
   },
 ];

@@ -22,7 +22,6 @@ function CommentThread() {
       axiosConfig
         .get(`/api/posts/${curPostId}/commentThread`)
         .then((data) => {
-          console.log(data);
           setCommentThread(data?.data?.comments);
           setReload(false);
         })

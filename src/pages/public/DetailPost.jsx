@@ -17,7 +17,6 @@ function DetailPost() {
     axiosConfig
       .get(`/api/posts/${curPostId}`)
       .then((data) => {
-        console.log(data);
         setCurPost(data?.data?.data);
         dispatch(actions.setRelated(data?.data?.related));
         setTimeout(() => dispatch(actions.loading(false)), 1000);
