@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import toast from "react-toastify";
+import { toast } from "react-toastify";
 import noAvatar from "../source/images/noAvatar.png";
 import { optionsComment } from "../utils/constant";
 import axiosConfig from "../axiosConfig";
