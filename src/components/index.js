@@ -19,7 +19,7 @@ export { default as Pagination } from "./Pagination.jsx";
 export { default as Services } from "./Services.jsx";
 export { default as Service } from "./Service.jsx";
 export { default as SidebarLeft } from "./SidebarLeft.jsx";
-export { default as InputText } from "./InputText.jsx";
+export { default as InputField } from "./InputField.jsx";
 export { default as Tool } from "./Tool.jsx";
 export { default as ToolManager } from "./ToolManager.jsx";
 export { default as PreviewPost } from "./PreviewPost.jsx";

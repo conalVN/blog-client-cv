@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { nav } from "../utils/constant";
 import { Link, NavLink } from "react-router-dom";
+import Button from "./Button";
 
 const style = "text-orange-400";
 const noStyle = "";
@@ -27,7 +28,9 @@ function Header() {
         })}
       </ul>
       <span className="py-1 px-4 text-white bg-orange-400 rounded-full cursor-pointer">
-        <Link to={`mailto:develooper2022@gmail.com`}>Contact</Link>
+        <Link to="/login">
+          <Button title="Login" />
+        </Link>
       </span>
     </div>
   );

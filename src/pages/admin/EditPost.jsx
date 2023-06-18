@@ -2,7 +2,7 @@
 import { memo, useLayoutEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { InputText, LoadingData, PreviewPost, Tool } from "../../components";
+import { InputField, LoadingData, PreviewPost, Tool } from "../../components";
 import axiosConfig from "../../axiosConfig";
 import compareTwoArray from "../../utils/compareArray";
 import { useNavigate } from "react-router-dom";
@@ -241,13 +241,13 @@ function EditPost({ isUpdate }) {
                   </label>
                 </div>
               )}
-              <InputText
+              <InputField
                 styles="text-4xl font-bold"
                 placeholder="New post title here..."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <InputText
+              <InputField
                 placeholder="Add short decsription..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -271,7 +271,7 @@ function EditPost({ isUpdate }) {
                     ))}
                   </ul>
                 )}
-                <InputText
+                <InputField
                   value={tag}
                   placeholder="Add tags..."
                   onChange={handleShowTags}

@@ -11,8 +11,9 @@ import {
   PageNotFound,
   Posts,
   VerifyAccount,
+  Login,
 } from "./pages/public";
-import { Dashboard, EditPost, Login } from "./pages/admin";
+import { Dashboard, EditPost } from "./pages/admin";
 import Manager from "./pages/admin/Manager";
 import { useEffect, useState } from "react";
 import { List } from "./components";
