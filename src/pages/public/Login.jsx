@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { InputField } from "../../components";
 import axiosConfig from "../../axiosConfig";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../../context/authContext";
 
 const REGEX_USERNAME = /^[A-z][A-z0-9-_]{3,23}$/;
 const REGEX_EMAIL = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;

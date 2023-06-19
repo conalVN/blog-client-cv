@@ -7,7 +7,7 @@ import moment from "moment";
 import axiosConfig from "../../axiosConfig";
 import * as actions from "../../store/actions";
 import { CommentThread, SkeletonDetail } from "../../components";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../../context/authContext";
 
 function DetailPost() {
   const { isLoading, isLogin } = useSelector((state) => state.app);
