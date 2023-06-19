@@ -8,7 +8,7 @@ import "./source/css/grid.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import reduxConfig from "./redux";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/authContext";
 const { store, persistor } = reduxConfig();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
