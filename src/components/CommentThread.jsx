@@ -74,7 +74,7 @@ function CommentThread() {
       </div>
       <div className="w-full h-full flex flex-col gap-4">
         {commentThread?.map((item) => {
-          return <Comment data={item} key={item?._id} />;
+          return <Comment data={item} key={item?._id} setReload={setReload} />;
         })}
       </div>
     </section>

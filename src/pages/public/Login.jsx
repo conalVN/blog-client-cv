@@ -1,11 +1,9 @@
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { InputField } from "../../components";
 import axiosConfig from "../../axiosConfig";
-import * as actions from "../../store/actions";
-import { userInfo } from "../../services/userInfo";
+import AuthContext from "../../context/AuthContext";
 
 const REGEX_USERNAME = /^[A-z][A-z0-9-_]{3,23}$/;
 const REGEX_EMAIL = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -31,64 +29,10 @@ function Login({ isRegister }) {
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
+  const { updateAuth } = useContext(AuthContext);
   const userRef = useRef();
   const emailRef = useRef();
-
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  function handleEmail() {
-    if (email) {
-      if (!email.match(/[^\s@]+@[^\s@]+\.[^\s@]+/gi)) {
-        emailRef.current.style.borderColor = "red";
-        toast.error("Email is not valid");
-      } else {
-        emailRef.current.style.borderColor = "green";
-      }
-    } else {
-      emailRef.current.style.borderColor = "";
-    }
-  }
-  // handle login
-  // function handleLogin(e) {
-  //   e.preventDefault();
-  //   if (email && password) {
-  //     axiosConfig
-  //       .post(`/api/user/login`, { email, password }, { withCredentials: true })
-  //       .then((data) => {
-  //         console.log(data);
-  //         // dispatch(actions.login(true));
-  //         userInfo(data?.data?.token);
-  //         navigate("/");
-  //         toast.success(data?.data?.message);
-  //         setEmail("");
-  //         setPassword("");
-  //       })
-  //       .catch((err) => {
-  //         toast.error("The account password is incorrect. Please try again!");
-  //         console.log(err);
-  //       });
-  //   }
-  // }
-
-  // handle register
-  // function hanndleRegister(e) {
-  //   e.preventDefault();
-  //   if (email && password && username) {
-  //     axiosConfig
-  //       .post(`/api/user/register`, { username, email, password })
-  //       .then((data) => {
-  //         toast.success(data?.data?.message);
-  //         setUsername("");
-  //         setEmail("");
-  //         setPassword("");
-  //         setRePassword("");
-  //       })
-  //       .catch((err) => {
-  //         toast.error("The account password is incorrect. Please try again!");
-  //         console.log(err);
-  //       });
-  //   }
-  // }
   useEffect(() => {
     setValidName(REGEX_USERNAME.test(username));
   }, [username]);
@@ -100,9 +44,31 @@ function Login({ isRegister }) {
     setValidRePwd(password === rePassword);
   }, [password, rePassword]);
 
-  const handleLogin = async (e) => {};
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (!REGEX_EMAIL.test(email) || !REGEX_PWD.test(password)) {
+      return;
+    }
+    try {
+      axiosConfig
+        .post(`/api/user/login`, { email, password }, { withCredentials: true })
+        .then((data) => {
+          updateAuth(data?.data);
+          navigate("/", { replace: true });
+          toast.success(data?.data?.message);
+          setEmail("");
+          setPassword("");
+        })
+        .catch((err) => {
+          toast.error(err?.response?.data?.message);
+          console.log(err);
+        });
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+      console.log(error);
+    }
+  };
   const handleRegister = async (e) => {
-    console.log("click register");
     e.preventDefault();
     if (
       !REGEX_USERNAME.test(username) ||
@@ -113,7 +79,6 @@ function Login({ isRegister }) {
       return;
     }
     try {
-      console.log("run call register");
       axiosConfig
         .post(
           `/api/user/register`,
@@ -121,7 +86,6 @@ function Login({ isRegister }) {
           { withCredentials: true }
         )
         .then((data) => {
-          console.log(data);
           if (data?.data?.success) {
             toast.success(data?.data?.message);
             setSuccess(true);

@@ -1,12 +1,28 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import { nav } from "../utils/constant";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Button from "./Button";
+import AuthContext from "../context/authContext";
+import axiosConfig from "../axiosConfig";
 
 const style = "text-orange-400";
 const noStyle = "";
 
 function Header() {
+  const { auth, updateAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    axiosConfig
+      .get(`/api/user/logout`)
+      .then((data) => {
+        updateAuth({});
+        localStorage.removeItem("auth");
+        navigate("/");
+        toast.info(data?.data?.message);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="fixed top-2 z-50 hidden md:flex items-center justify-between w-full max-w-7xl py-2 px-4 bg-alpha rounded-full border border-orange-400">
       <Link to="/" className="font-logo text-xl">
@@ -28,9 +44,13 @@ function Header() {
         })}
       </ul>
       <span className="py-1 px-4 text-white bg-orange-400 rounded-full cursor-pointer">
-        <Link to="/login">
-          <Button title="Login" />
-        </Link>
+        {auth?.success ? (
+          <Button title="Log out" onClick={handleLogout} />
+        ) : (
+          <Link to="/login">
+            <Button title="Login" />
+          </Link>
+        )}
       </span>
     </div>
   );

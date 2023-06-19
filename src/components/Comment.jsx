@@ -4,13 +4,14 @@ import noAvatar from "../source/images/noAvatar.png";
 import { optionsComment } from "../utils/constant";
 import axiosConfig from "../axiosConfig";
 
-function Comment({ data }) {
+function Comment({ data, setReload }) {
   const [showOptions, setShowOptions] = useState(false);
   function handleDeleteComment(id) {
     axiosConfig
       .delete(`/api/posts/comments/${id}`)
       .then((data) => {
         toast.success(data?.data?.message);
+        setReload(true);
       })
       .catch((err) => console.log(err));
   }

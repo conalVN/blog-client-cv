@@ -19,7 +19,7 @@ export const path = {
   UPDATE_POST: "update/:id",
   LOGIN: "login",
   REGISTER: "register",
-  VERIFY: "verify",
+  VERIFY: "verify/:token",
 
   STAR: "*",
 };

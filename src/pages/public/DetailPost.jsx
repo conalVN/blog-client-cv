@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useEffect, useLayoutEffect, useState } from "react";
+import { memo, useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,10 +7,12 @@ import moment from "moment";
 import axiosConfig from "../../axiosConfig";
 import * as actions from "../../store/actions";
 import { CommentThread, SkeletonDetail } from "../../components";
+import AuthContext from "../../context/AuthContext";
 
 function DetailPost() {
   const { isLoading, isLogin } = useSelector((state) => state.app);
   const { curPostId } = useSelector((state) => state.post);
+  const { auth } = useContext(AuthContext);
   const dispatch = useDispatch();
   const [curPost, setCurPost] = useState(null);
   useLayoutEffect(() => {
@@ -70,7 +72,7 @@ function DetailPost() {
               ></p>
             </div>
           </div>
-          {!isLogin ? (
+          {!auth.success ? (
             <div className="w-full text-center">
               Vui lòng đăng nhập để bình luận{" "}
               <Link to="/login" className="underline">
