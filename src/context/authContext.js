@@ -9,7 +9,11 @@ export const AuthProvider = ({ children }) => {
     setAuth(newData);
     localStorage.setItem(
       "auth",
-      JSON.stringify({ success: newData.success, message: newData.message })
+      JSON.stringify({
+        success: newData.success,
+        message: newData.message,
+        userId: newData.userId,
+      })
     );
   };
   useEffect(() => {

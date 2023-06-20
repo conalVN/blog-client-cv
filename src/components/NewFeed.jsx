@@ -14,7 +14,7 @@ function NewFeed() {
   useLayoutEffect(() => {
     dispatch(actions.loading(true));
     axiosConfig
-      .get(`/api/posts/limit?limit=3&page=2`)
+      .get(`/api/posts/limit?limit=10&page=2`)
       .then((data) => {
         setPosts(data?.data);
         dispatch(actions.loading(false));
@@ -26,16 +26,16 @@ function NewFeed() {
       });
   }, []);
   return (
-    <div className="mt-4">
-      {/* <h1 className="py-4 text-2xl md:text-4xl font-bold font-logo text-center">
-        News feed
-      </h1> */}
+    <div className="my-4 p-4 bg-orange-50">
+      <h1 className="py-4 text-2xl md:text-4xl font-bold font-logo text-center">
+        Latest Content
+      </h1>
       {isLoading ? (
         <SkeletonNew />
       ) : (
-        <div className="flex flex-col gap-4 px-4">
-          {posts?.map((post, index) => {
-            return <PostNew data={post} i={index} key={post?._id} />;
+        <div className="flex flex-wrap justify-center gap-4 px-4">
+          {posts?.map((post) => {
+            return <PostNew data={post} key={post?._id} />;
           })}
         </div>
       )}

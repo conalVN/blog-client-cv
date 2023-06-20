@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { memo, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Header } from "../../components";
+import { Contact, Header } from "../../components";
 import MenuMobile from "../../components/MenuMobile";
 
 function Layout() {
@@ -27,6 +27,7 @@ function Layout() {
       <div className="h-full">
         <Outlet />
       </div>
+      <Contact />
       <div className="border-t border-orange-500">
         <p className="p-4 text-gray-500">
           © Vui lòng liên kết đến bài gốc khi trích dẫn các nội dung từ website

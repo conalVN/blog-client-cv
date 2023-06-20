@@ -1,6 +1,7 @@
 import { memo, useEffect, useRef } from "react";
 
 function InputField({
+  label,
   type,
   id,
   styles,
@@ -23,6 +24,7 @@ function InputField({
   }, []);
   return (
     <label htmlFor={id}>
+      {label && <span className="font-semibold">{label}</span>}
       <input
         ref={inputEl}
         type={`${type ? type : "text"}`}

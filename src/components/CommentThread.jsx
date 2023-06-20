@@ -24,9 +24,10 @@ function CommentThread() {
         .then((data) => {
           setCommentThread(data?.data?.comments);
           setReload(false);
+          console.log("CommentThread::", data?.data?.comments);
         })
         .catch((err) => {
-          console.log(err);
+          console.log("Err get thread comment::", err);
         });
     }
   }, [reload]);
@@ -38,7 +39,9 @@ function CommentThread() {
         setReload(true);
         setComment("");
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log("Err create comment::", err);
+      });
   }
   return (
     <section className="w-full my-10">

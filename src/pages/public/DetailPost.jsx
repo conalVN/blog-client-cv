@@ -72,16 +72,18 @@ function DetailPost() {
               ></p>
             </div>
           </div>
-          {!auth.success ? (
-            <div className="w-full text-center">
-              Vui lòng đăng nhập để bình luận{" "}
-              <Link to="/login" className="underline">
-                Sign in
-              </Link>
-            </div>
-          ) : (
-            <CommentThread />
-          )}
+          <div>
+            {!auth.success ? (
+              <div className="w-full text-center">
+                Vui lòng đăng nhập để bình luận{" "}
+                <Link to="/login" className="underline">
+                  Sign in
+                </Link>
+              </div>
+            ) : (
+              <CommentThread />
+            )}
+          </div>
         </div>
       )}
     </>

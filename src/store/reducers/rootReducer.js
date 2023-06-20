@@ -16,14 +16,8 @@ const postConfig = {
   whitelist: ["posts", "curPostId"],
 };
 
-const appConfig = {
-  ...commonConfig,
-  key: "app",
-  whitelist: ["isLogin"],
-};
-
 const rootReducer = combineReducers({
-  app: persistReducer(appConfig, appReducer),
+  app: appReducer,
   post: persistReducer(postConfig, postReducer),
 });
 

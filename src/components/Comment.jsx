@@ -6,6 +6,8 @@ import axiosConfig from "../axiosConfig";
 
 function Comment({ data, setReload }) {
   const [showOptions, setShowOptions] = useState(false);
+  const validUser =
+    JSON.parse(localStorage.getItem("auth"))?.userId === data?.user?._id;
   function handleDeleteComment(id) {
     axiosConfig
       .delete(`/api/posts/comments/${id}`)
@@ -15,7 +17,7 @@ function Comment({ data, setReload }) {
       })
       .catch((err) => console.log(err));
   }
-  function handleGimComment(id) {}
+  function handleEditComment(id) {}
   return (
     <div className="flex gap-4 p-2">
       <div className="w-12 h-12 rounded-full shadow overflow-hidden">
@@ -38,7 +40,7 @@ function Comment({ data, setReload }) {
             <span className=""></span>
           </span>
           <span className="flex items-center cursor-pointer">
-            <span className="">Phản hồi</span>
+            <span className="">Reply</span>
           </span>
         </div>
       </div>
@@ -52,26 +54,33 @@ function Comment({ data, setReload }) {
             className="absolute right-full top-0 min-w-max rounded-md bg-white shadow"
             onClick={(e) => e.stopPropagation()}
           >
-            <ul className="">
-              {optionsComment?.map((opt) => {
-                return (
-                  <li
-                    className="flex gap-2 py-2 pl-2 pr-8 hover:bg-gray-100"
-                    key={opt.type}
-                    onClick={() =>
-                      opt.type === 1
-                        ? handleDeleteComment(data?._id)
-                        : handleGimComment(data?._id)
-                    }
-                  >
-                    <span className="material-symbols-outlined">
-                      {opt?.icon}
-                    </span>
-                    <span className="">{opt?.name}</span>
-                  </li>
-                );
-              })}
-            </ul>
+            {validUser ? (
+              <ul className="">
+                {optionsComment?.map((opt) => {
+                  return (
+                    <li
+                      className="flex gap-2 py-2 pl-2 pr-8 hover:bg-gray-100"
+                      key={opt.type}
+                      onClick={() =>
+                        opt.type === 1
+                          ? handleDeleteComment(data?._id)
+                          : handleEditComment(data?._id)
+                      }
+                    >
+                      <span className="material-symbols-outlined">
+                        {opt?.icon}
+                      </span>
+                      <span className="">{opt?.name}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <span className="flex gap-2 py-2 pl-2 pr-8 hover:bg-gray-100">
+                <span className="material-symbols-outlined">flag</span>
+                <span className="">Report</span>
+              </span>
+            )}
           </section>
         )}
       </span>

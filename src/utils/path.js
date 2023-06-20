@@ -1,6 +1,7 @@
 export const path = {
   LAYOUT: "",
   HOME: "",
+  LATEST_CONTENT: "latest",
   POSTS: "posts",
   LIST_POST: "",
   DETAIL_POST: ":id",

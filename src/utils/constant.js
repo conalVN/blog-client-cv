@@ -5,8 +5,8 @@ import person from "../source/images/person.jpg";
 
 export const nav = [
   {
-    path: "",
-    name: "Home",
+    path: "/latest",
+    name: "Latest",
     icon: "home_app_logo",
   },
   {
@@ -121,12 +121,12 @@ export const filterPost = [
 
 export const optionsComment = [
   {
-    name: "Ghim",
-    icon: "push_pin",
+    name: "Edit",
+    icon: "edit",
     type: 0,
   },
   {
-    name: "Loại bỏ",
+    name: "Delete",
     icon: "delete",
     type: 1,
   },

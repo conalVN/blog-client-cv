@@ -12,6 +12,7 @@ import {
   Posts,
   VerifyAccount,
   Login,
+  LatestContent,
 } from "./pages/public";
 import { Dashboard, EditPost } from "./pages/admin";
 import Manager from "./pages/admin/Manager";
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route path={path.LAYOUT} element={<Layout />}>
           <Route index path={path.HOME} element={<Home />} />
+          <Route index path={path.LATEST_CONTENT} element={<LatestContent />} />
           <Route
             path={path.POSTS}
             element={<Posts curPage={curPage} setCurPage={setCurPage} />}
