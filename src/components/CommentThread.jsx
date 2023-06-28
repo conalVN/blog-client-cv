@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { memo, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { Button, Comment } from "../components";
 import axiosConfig from "../axiosConfig";
 
@@ -24,10 +25,9 @@ function CommentThread() {
         .then((data) => {
           setCommentThread(data?.data?.comments);
           setReload(false);
-          console.log("CommentThread::", data?.data?.comments);
         })
         .catch((err) => {
-          console.log("Err get thread comment::", err);
+          toast.error(err);
         });
     }
   }, [reload]);

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,10 +21,11 @@ import { List } from "./components";
 
 function App() {
   const [curPage, setCurPage] = useState(1);
+  const location = useLocation();
   useEffect(() => {
     window.onbeforeunload = () =>
       window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  }, [location]);
 
   return (
     <>
@@ -56,7 +57,7 @@ function App() {
       </Routes>
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
