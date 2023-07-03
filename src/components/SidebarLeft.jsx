@@ -1,14 +1,15 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { menu } from "../utils/constant";
+import AuthContext from "../context/authContext";
 
 function SidebarLeft() {
   const navigate = useNavigate();
+  const { updateAuth } = useContext(AuthContext);
   const logout = () => {
-    Cookies.remove("key");
-    navigate("/login");
+    updateAuth({});
+    navigate("/");
     toast.success("Log out success!");
   };
 

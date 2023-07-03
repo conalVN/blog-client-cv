@@ -1,19 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useEffect, useState } from "react";
+import { memo, useContext, useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { Popup, SidebarLeft } from "../../components";
 
 function Dashboard() {
-  const { isPopup, isLogin } = useSelector((state) => state.app);
+  const { isPopup } = useSelector((state) => state.app);
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    if (location.pathname.includes("/system") && !isLogin) {
-      navigate(`/login`);
+    if (
+      location.pathname.includes("/system") &&
+      !JSON.parse(sessionStorage.getItem("admin"))
+    ) {
+      navigate(`/`);
     }
-  }, [isLogin, location]);
+  }, [location]);
 
   return (
     <div className="grid h-screen overflow-hidden">

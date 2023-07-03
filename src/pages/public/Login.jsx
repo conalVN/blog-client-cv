@@ -7,7 +7,7 @@ import AuthContext from "../../context/authContext";
 
 const REGEX_USERNAME = /^[A-z][A-z0-9-_]{3,23}$/;
 const REGEX_EMAIL = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const REGEX_PWD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const REGEX_PWD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,24}$/;
 
 function Login({ isRegister }) {
   const [username, setUsername] = useState("");

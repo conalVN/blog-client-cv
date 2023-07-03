@@ -242,7 +242,7 @@ function EditPost({ isUpdate }) {
                 </div>
               )}
               <InputField
-                styles="text-4xl font-bold"
+                styles="text-4xl font-bold w-full"
                 placeholder="New post title here..."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
