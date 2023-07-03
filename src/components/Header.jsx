@@ -18,6 +18,7 @@ function Header() {
       .then((data) => {
         updateAuth({});
         localStorage.removeItem("auth");
+        sessionStorage.removeItem("admin");
         navigate("/");
         toast.info(data?.data?.message);
       })
